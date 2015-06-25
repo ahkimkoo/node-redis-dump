@@ -1,4 +1,4 @@
-# redis-dump
+# redis-dump-tool
 
 Dump redis database into redis commands or json with command line or node.js
 
@@ -9,27 +9,27 @@ Dump redis database into redis commands or json with command line or node.js
 $ curl http://npmjs.org/install.sh | sh
 ```
 
-### Installing redis-dump
+### Installing redis-dump-tool
 ``` bash
-$ [sudo] npm install redis-dump -g
+$ [sudo] npm install redis-dump-tool -g
 ```
 
-**Note:** If you are using redis-dump _programatically_ you should not install it globally.
+**Note:** If you are using redis-dump-tool _programatically_ you should not install it globally.
 
 ``` bash
 $ cd /path/to/your/project
-$ [sudo] npm install redis-dump
+$ [sudo] npm install redis-dump-tool
 ```
 
 ## Usage
-There are two distinct ways to use redis-dump: through the command line interface, or by requiring the redis-dump module in your own code.
+There are two distinct ways to use redis-dump-tool: through the command line interface, or by requiring the redis-dump-tool module in your own code.
 
-### Using redis-dump from the command line
+### Using redis-dump-tool from the command line
 The usage options are simple:
 
 ```
-$ redis-dump --help
-Usage: redis-dump [OPTIONS]
+$ redis-dump-tool --help
+Usage: redis-dump-tool [OPTIONS]
   -h <hostname>    Server hostname (default: 127.0.0.1)
   -p <port>        Server port (default: 6379)
   -d <db>          Database to be selected (default: 0)
@@ -40,14 +40,14 @@ Usage: redis-dump [OPTIONS]
   --pretty         Make pretty indented output (use with --json)
 
 Examples:
-  redis-dump
-  redis-dump -p 6500
-  redis-dump -f 'mydb:*' > mydb.dump.txt
-  redis-dump --json > mydb.json
+  redis-dump-tool
+  redis-dump-tool -p 6500
+  redis-dump-tool -f 'mydb:*' > mydb.dump.txt
+  redis-dump-tool --json > mydb.json
 
 The output is a valid list of redis commands.
 That means the following will work:
-  redis-dump > dump.txt      # Dump redis database
+  redis-dump-tool > dump.txt      # Dump redis database
   cat dump.txt | redis-cli   # Import redis database from generated file
 ```
 
@@ -64,10 +64,10 @@ SET     mydb:volatile 'nothing important'
 EXPIRE  mydb:volatile 3600
 ```
 
-If we call redis-dump, the output will look like this:
+If we call redis-dump-tool, the output will look like this:
 
 ``` bash
-$ redis-dump -f 'mydb:*'
+$ redis-dump-tool -f 'mydb:*'
 DEL     mydb:numberlist
 RPUSH   mydb:numberlist one two three
 DEL     mydb:numberset
@@ -85,10 +85,10 @@ EXPIRE  mydb:volatile 3600
 And with json output:
 
 ``` bash
-$ redis-dump -f 'mydb:*' --json
+$ redis-dump-tool -f 'mydb:*' --json
 {"mydb:numberlist":{"type":"list","value":["one","two","three"]},"mydb:numberset":{"type":"set","value":["three","two","one"]},"mydb:sortednumberset":{"type":"zset","value":[[1000,"one"],[2000,"two"],[3000,"three"]]},"mydb:volatile":{"type":"string","value":"nothing important","ttl":3466},"mydb:article:4":{"type":"hash","value":{"title":"Hello World","id":"4"}},"mydb:numvisits":{"type":"string","value":"34"}}
 
-$ redis-dump -f 'mydb:*' --json --pretty > mydb.json
+$ redis-dump-tool -f 'mydb:*' --json --pretty > mydb.json
 ```
 
 The json maps all the informations from redis database in a handy way for other programming languages.
@@ -150,7 +150,7 @@ The json maps all the informations from redis database in a handy way for other 
 You can also convert json back to redis commands.
 
 ``` bash
-$ cat mydb.json | redis-dump --convert
+$ cat mydb.json | redis-dump-tool --convert
 DEL     mydb:numberlist
 RPUSH   mydb:numberlist one two three
 DEL     mydb:numberset
@@ -168,16 +168,16 @@ EXPIRE  mydb:volatile 3466
 Then, import your data back to redis can be done in one line from either format:
 
 ``` bash
-$ cat mydb.json | redis-dump --convert | redis-cli # from json
+$ cat mydb.json | redis-dump-tool --convert | redis-cli # from json
 
 $ cat dump.txt | redis-cli # from redis commands
 ```
 
-### Using redis-dump from node.js
-You can also use redis-dump from inside your own node.js code.
+### Using redis-dump-tool from node.js
+You can also use redis-dump-tool from inside your own node.js code.
 
 ``` js
-var dump = require('redis-dump');
+var dump = require('redis-dump-tool');
 
 dump({
   // These are default values, you can omit them

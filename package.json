@@ -1,5 +1,5 @@
 {
-    "name": "redis-dump",
+    "name": "redis-dump-tool",
     "version": "0.2.0",
     "description": "Dump redis database into redis commands or json with command line or node.js",
     "keywords": [
@@ -15,7 +15,7 @@
         "test": "node ./bin/test.js"
     },
     "bin": {
-        "redis-dump": "./bin/cli/redis-dump"
+        "redis-dump-tool": "./bin/cli/redis-dump"
     },
     "dependencies": {
         "hiredis": ">=0.1.13",

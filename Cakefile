@@ -1,6 +1,7 @@
 
 fs = require 'fs'
-findit = require 'findit'
+#findit = require 'findit'
+finder = require('findit')('.')
 exec = require('child_process').exec
 coffee = require 'coffee-script'
 path = require 'path'
@@ -21,7 +22,7 @@ task 'build', 'build project', (options) ->
 
             # Compile coffee files
             #for filename in findit.sync bin
-            findit.on bin, (filename, stat)
+            finder.on bin, (filename, stat) =>
                 if filename.substring(filename.length-7) is '.coffee'
                     # Get script from coffee file
                     script = fs.readFileSync filename, 'utf8'

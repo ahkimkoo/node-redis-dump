@@ -1,6 +1,6 @@
 {
     "name": "redis-dump",
-    "version": "0.1.6",
+    "version": "0.2.0",
     "description": "Dump redis database into redis commands or json with command line or node.js",
     "keywords": [
     "redis",
@@ -9,7 +9,7 @@
     "command line",
     "json"
     ],
-    "author": "Jeremy Faivre <contact@jeremyfa.com>",
+    "author": "Cherokee <successage@gmail.com>",
     "main": "./bin/index.js",
     "scripts": {
         "test": "node ./bin/test.js"

@@ -29,6 +29,6 @@
     },
     "repository": {
         "type": "git",
-        "url": "git://github.com/jeremyfa/node-redis-dump.git"
+        "url": "https://github.com/ahkimkoo/node-redis-dump.git"
     }
 }
